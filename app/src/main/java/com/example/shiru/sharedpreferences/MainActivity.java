@@ -1,5 +1,7 @@
 package com.example.shiru.sharedpreferences;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -23,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         layout = findViewById(R.id.linearlayout);
-        
+
         etName = findViewById(R.id.txtName);
         etCity = findViewById(R.id.txtCity);
 
@@ -39,6 +41,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void saveData(View view) {
+
+        SharedPreferences sharedPreferences = getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        editor.putString("Name",etName.getText().toString());
+        editor.putString("City",etCity.getText().toString());
+
+
+
     }
 
     public void loadData(View view) {
