@@ -1,5 +1,7 @@
 package com.example.shiru.sharedpreferences;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -19,6 +21,13 @@ public class secondActivty extends AppCompatActivity {
     }
 
     public void loadAccountData(View view) {
+        SharedPreferences sharedPreferences = getSharedPreferences(getPackageName() +Constants.PREF_FILE_NAME, Context.MODE_PRIVATE);
+
+        String name = sharedPreferences.getString(Constants.KEY_NAME, "Null");
+        String city = sharedPreferences.getString(Constants.KEY_CITY, "Null");
+
+        txtSecondName.setText(name);
+        txtSecondCity.setText(city);
     }
 
     public void clearAccountData(View view) {
