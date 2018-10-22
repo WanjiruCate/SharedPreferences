@@ -53,6 +53,6 @@ public class secondActivty extends AppCompatActivity {
         editor.remove(Constants.KEY_CITY);
         editor.apply();
 
-        Toast.makeText(getApplicationContext(),"Removed"+Constants.KEY_CITY+ " shared Preferences",Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(),"Removed "+Constants.KEY_CITY+ " Key shared Preferences",Toast.LENGTH_LONG).show();
     }
 }

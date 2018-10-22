@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -79,6 +80,8 @@ public class MainActivity extends AppCompatActivity {
 
         editor.apply(); //editor.commit()
 
+        Toast.makeText(getApplicationContext(),"Saved data into shared Preferences",Toast.LENGTH_LONG).show();
+
 
     }
 
@@ -92,6 +95,8 @@ public class MainActivity extends AppCompatActivity {
 
         txtname.setText(name);
         txtcity.setText(city);
+
+        Toast.makeText(getApplicationContext(),"Loaded data from shared Preferences",Toast.LENGTH_LONG).show();
 
 
 
