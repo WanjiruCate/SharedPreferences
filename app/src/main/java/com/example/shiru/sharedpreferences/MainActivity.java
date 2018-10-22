@@ -48,11 +48,23 @@ public class MainActivity extends AppCompatActivity {
         editor.putString("Name",etName.getText().toString());
         editor.putString("City",etCity.getText().toString());
 
+        editor.apply(); //editor.commit()
 
 
     }
 
     public void loadData(View view) {
+
+        SharedPreferences sharedPreferences = getPreferences(Context.MODE_PRIVATE);
+
+        String name = sharedPreferences.getString("Name", "Null");
+        String city = sharedPreferences.getString("City", "Null");
+
+        txtname.setText(name);
+        txtcity.setText(city);
+
+
+
     }
 
     public void openSecondActivity(View view) {
