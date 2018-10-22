@@ -3,11 +3,13 @@ package com.example.shiru.sharedpreferences;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Switch;
@@ -15,8 +17,8 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView txtname,txtcity;
-    TextInputEditText etName,etCity;
+   TextView txtname,txtcity;
+   TextInputEditText etName,etCity;
    Button btnSave,btnLoad,btnNext;
    Switch aSwitch;
    LinearLayout layout;
@@ -39,8 +41,34 @@ public class MainActivity extends AppCompatActivity {
         txtcity = findViewById(R.id.txtCity);
         txtname = findViewById(R.id.txtName);
 
+       aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+           @Override
+           public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+               setPageColor(isChecked);
+           }
+       });
+        //Retrieve the value from Activity level SharedPreferences
+       SharedPreferences sp = getPreferences(Context.MODE_PRIVATE);
+       boolean isChecked = sp.getBoolean("green",false);
+       aSwitch.setChecked(isChecked);
     }
 
+   //Save data in activity Level shared preferences
+    private void setPageColor(boolean isChecked) {
+
+        SharedPreferences sharedPreferences = getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        editor.putBoolean("green",isChecked);
+
+        editor.apply();
+
+        layout.setBackgroundColor(isChecked? Color.GREEN : Color.WHITE);
+    }
+
+
+    //Saving data to App level SharedPref fil
     public void saveData(View view) {
 
         SharedPreferences sharedPreferences = getSharedPreferences(getPackageName()+Constants.PREF_FILE_NAME,Context.MODE_PRIVATE);
@@ -54,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    //Loading data from App level SharedPref file
     public void loadData(View view) {
 
         SharedPreferences sharedPreferences = getSharedPreferences(getPackageName() +Constants.PREF_FILE_NAME, Context.MODE_PRIVATE);
@@ -73,4 +102,6 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this,secondActivty.class);
         startActivity(intent);
     }
+
+
 }

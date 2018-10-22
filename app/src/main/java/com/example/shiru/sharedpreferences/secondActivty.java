@@ -20,7 +20,9 @@ public class secondActivty extends AppCompatActivity {
         txtSecondName = findViewById(R.id.txtNameSecond);
     }
 
+    //Loading data from Application level SharedPref file
     public void loadAccountData(View view) {
+
         SharedPreferences sharedPreferences = getSharedPreferences(getPackageName() +Constants.PREF_FILE_NAME, Context.MODE_PRIVATE);
 
         String name = sharedPreferences.getString(Constants.KEY_NAME, "Null");
